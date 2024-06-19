@@ -8,6 +8,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { MenuComponent } from '../menu/menu.component';
+import { CategoriesComponent } from '../categories/categories.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -21,24 +24,13 @@ import { map, shareReplay } from 'rxjs/operators';
     MatListModule,
     MatIconModule,
     AsyncPipe,
+    MenuComponent,
+    CategoriesComponent,
+    RouterOutlet
   ]
 })
 export class HomeComponent {
 
-  menuItems: Array<{ path: string; label: string }> = [
-    {
-      path: "/",
-      label: "Home",
-    },
-    {
-      path: "/categories",
-      label: "Categorias",
-    },
-    {
-      path: "/suppliers",
-      label: "Suppliers",
-    },
-  ]
 
   private breakpointObserver = inject(BreakpointObserver);
 
