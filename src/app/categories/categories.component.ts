@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableModule, MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
@@ -23,27 +23,48 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule, MatTableModule, MatPaginatorModule, MatSortModule, MatCardModule, MatButtonModule, CategoryFormComponent]
 })
-export class CategoriesComponent implements AfterViewInit {
+export class CategoriesComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<CategoriesItem>;
   dataSource = new MatTableDataSource<Category>();
 
+  category!: Category
+
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name', 'description'];
+  displayedColumns = ['id', 'name', 'description', 'action'];
 
   showForm: boolean = false
 
   constructor(private categoryService: CategoryService) { }
 
+  ngOnInit(): void {
+
+  }
+
   onNewCategoryClick() {
+    this.category = {
+      id: 0,
+      name: '',
+      description: ''
+    }
 
     this.showForm = true
     // console.log(this.showForm);
   }
 
+  onEditCategoryClick(category: Category) {
+    this.category = {
+      id: category.id,
+      name: category.name,
+      description: category.description
+    }
+    console.log("edit category: ", category.id, category.name, category.description);
+    this.showForm = true
+
+  }
+
   hideCategoryForm() {
-    console.log('back');
     this.showForm = false
     this.loadCategories()
   }
@@ -52,7 +73,9 @@ export class CategoriesComponent implements AfterViewInit {
     console.log('saving category ', category);
     const saved = lastValueFrom(this.categoryService.save(category))
     console.log('Saved', saved);
-    this.hideCategoryForm()
+    // this.hideCategoryForm()
+    this.showForm = false
+    this.loadCategories()
 
   }
 
