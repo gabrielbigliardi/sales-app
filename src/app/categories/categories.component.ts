@@ -12,6 +12,7 @@ import { CategoryFormComponent } from './form/form.component';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { LoadingBarComponent } from '../loading-bar.component';
+import { MaterialModule } from '../material.module';
 
 @Component({
   selector: 'app-categories',
@@ -23,7 +24,7 @@ import { LoadingBarComponent } from '../loading-bar.component';
     
   `,
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatPaginatorModule, MatSortModule, MatCardModule, MatButtonModule, CategoryFormComponent, MatIcon, LoadingBarComponent]
+  imports: [MaterialModule, CategoryFormComponent, LoadingBarComponent]
 })
 export class CategoriesComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
