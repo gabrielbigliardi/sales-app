@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CategoryFormComponent } from './form/form.component';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
+import { LoadingBarComponent } from '../loading-bar.component';
 
 @Component({
   selector: 'app-categories',
@@ -22,7 +23,7 @@ import { MatIcon } from '@angular/material/icon';
     
   `,
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatPaginatorModule, MatSortModule, MatCardModule, MatButtonModule, CategoryFormComponent, MatIcon]
+  imports: [CommonModule, MatTableModule, MatPaginatorModule, MatSortModule, MatCardModule, MatButtonModule, CategoryFormComponent, MatIcon, LoadingBarComponent]
 })
 export class CategoriesComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -36,6 +37,8 @@ export class CategoriesComponent implements AfterViewInit, OnInit {
   displayedColumns = ['id', 'name', 'description', 'action'];
 
   showForm: boolean = false
+
+  showLoading: boolean = false
 
   constructor(private categoryService: CategoryService) { }
 
@@ -66,7 +69,9 @@ export class CategoriesComponent implements AfterViewInit, OnInit {
 
   async onDeleteCategoryClick(category: Category) {
     if (confirm(`Deletar "${category.name}" com id ${category.id} ?`)) {
+      this.showLoading = true
       await lastValueFrom(this.categoryService.delete(category.id))
+      this.showLoading = false
       this.loadCategories();
     }
   }
@@ -96,11 +101,13 @@ export class CategoriesComponent implements AfterViewInit, OnInit {
   }
 
   async loadCategories(): Promise<void> {
+    this.showLoading = true
     const categories = await lastValueFrom(this.categoryService.getAll())
     this.dataSource = new MatTableDataSource(categories)
     this.table.dataSource = this.dataSource
     this.dataSource.sort = this.sort
     this.dataSource.paginator = this.paginator
+    this.showLoading = false
   }
 
 
