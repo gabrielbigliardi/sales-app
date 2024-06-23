@@ -10,6 +10,7 @@ import { lastValueFrom } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { CategoryFormComponent } from './form/form.component';
 import { CommonModule } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-categories',
@@ -21,7 +22,7 @@ import { CommonModule } from '@angular/common';
     
   `,
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatPaginatorModule, MatSortModule, MatCardModule, MatButtonModule, CategoryFormComponent]
+  imports: [CommonModule, MatTableModule, MatPaginatorModule, MatSortModule, MatCardModule, MatButtonModule, CategoryFormComponent, MatIcon]
 })
 export class CategoriesComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -61,7 +62,13 @@ export class CategoriesComponent implements AfterViewInit, OnInit {
     }
     console.log("edit category: ", category.id, category.name, category.description);
     this.showForm = true
+  }
 
+  async onDeleteCategoryClick(category: Category) {
+    if (confirm(`Deletar "${category.name}" com id ${category.id} ?`)) {
+      await lastValueFrom(this.categoryService.delete(category.id))
+      this.loadCategories();
+    }
   }
 
   hideCategoryForm() {

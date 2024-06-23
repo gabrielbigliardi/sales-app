@@ -24,4 +24,13 @@ export class CategoryService {
     }
     return this.http.post<Category>(environment.api + 'categories', category)
   }
+
+  public delete(id: number) {
+    return this.http.delete(environment.api + 'categories/' + id)
+    // return this.http.delete(environment.api + 'categories/' + id);
+  }
+
+  // public delete(id: número) {
+  //   return this.http.delete(environment.api + 'categories/' + id);
+  //   }
 }
