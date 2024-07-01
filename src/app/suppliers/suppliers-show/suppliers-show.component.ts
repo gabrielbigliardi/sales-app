@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-fornecedores-show',
+  selector: 'app-suppliers-show',
   standalone: true,
   imports: [],
-  templateUrl: './fornecedores-show.component.html',
+  templateUrl: './suppliers-show.component.html',
   styles: ``
 })
-export class FornecedoresShowComponent {
+export class SuppliersShowComponent {
 
 }

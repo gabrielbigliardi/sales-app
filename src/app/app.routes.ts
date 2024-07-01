@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { CategoriesComponent } from './categories/categories.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { FornecedoresComponent } from './suppliers/suppliers.component';
-import { FornecedoresListComponent } from './suppliers/suppliers-list/suppliers-list.component';
+import { SuppliersComponent } from './suppliers/suppliers.component';
+import { SuppliersListComponent } from './suppliers/suppliers-list/suppliers-list.component';
 
 export const routes: Routes = [
 
@@ -12,11 +12,11 @@ export const routes: Routes = [
     },
     {
         path: "suppliers",
-        component: FornecedoresComponent,
+        component: SuppliersComponent,
         children: [
             {
                 path: '',
-                component: FornecedoresListComponent
+                component: SuppliersListComponent
             }
         ]
     },

@@ -3,12 +3,12 @@ import { MaterialModule } from '../material.module';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-fornecedores',
+  selector: 'app-suppliers',
   standalone: true,
   imports: [MaterialModule, RouterOutlet],
-  templateUrl: './fornecedores.component.html',
-  styleUrl: './fornecedores.component.scss'
+  templateUrl: './suppliers.component.html',
+  styleUrl: './suppliers.component.scss'
 })
-export class FornecedoresComponent {
+export class SuppliersComponent {
 
 }
