@@ -1,5 +1,9 @@
 <mat-card-subtitle>Listing all Suppliers</mat-card-subtitle>
 
+<mat-card-actions align="end">
+    <button mat-button [routerLink]="['/suppliers/new']">New</button>
+</mat-card-actions>
+
 @if(supplierObservable|async) {
 <div class="container wrap">
     @for(supplier of suppliers; track supplier.id){
@@ -11,6 +15,3 @@
 } @else {
 <app-loading-bar></app-loading-bar>
 }
-<mat-card-actions align="end">
-    <button mat-button [routerLink]="['/suppliers/new']">New</button>
-</mat-card-actions>
