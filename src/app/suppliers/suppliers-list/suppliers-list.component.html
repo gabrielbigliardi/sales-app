@@ -1,7 +1,7 @@
 <mat-card-subtitle>Listing all Suppliers</mat-card-subtitle>
 
-<mat-card-actions align="end">
-    <button mat-button [routerLink]="['/suppliers/new']">New</button>
+<mat-card-actions>
+    <button mat-raised-button color="primary" [routerLink]="['/suppliers/new']">New</button>
 </mat-card-actions>
 
 @if(supplierObservable|async) {
