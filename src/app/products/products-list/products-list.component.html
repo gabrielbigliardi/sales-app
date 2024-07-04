@@ -9,13 +9,13 @@
     </div>
   </div>
 </form>
-<!-- <div>
+<div>
   @for(product of products; track product.id){
   <app-product-card [product]="product"></app-product-card>
   }
-</div> -->
+</div>
 
-<div class="container wrap">
+<!-- <div class="container wrap">
   @for (item of [].constructor(10); track $index) {
   <div style="height:100px;width:100%">{{$index}}</div>
   } @for(product of products; track product.id){ @defer (on viewport){
@@ -25,7 +25,7 @@
   } @loading(minimum 5s) {
   <span>Loading</span>
   } }
-</div>
+</div> -->
 
 } @else {
 <app-loading-bar></app-loading-bar>

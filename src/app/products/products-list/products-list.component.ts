@@ -36,8 +36,8 @@ export class ProductsListComponent implements OnInit {
   }
 
   private async getProducts(searchTerm?: string) {
-    // this.productsObservable = this.productService.getAll(searchTerm)
-    this.productsObservable = this.productService.getAll()
+    this.productsObservable = this.productService.getAll(searchTerm)
+    // this.productsObservable = this.productService.getAll()
     this.products = await lastValueFrom(this.productsObservable)
     // console.log('produtos: ' + this.products);
     // console.log('productsObservable: ' + this.productsObservable);
@@ -45,8 +45,8 @@ export class ProductsListComponent implements OnInit {
   }
 
   onSearch() {
-    // this.getProducts(this.searchForm.value.searchTerm)
-    console.log(this.searchForm.value);
+    this.getProducts(this.searchForm.value.searchTerm)
+    // console.log(this.searchForm.value);
   }
 
 
