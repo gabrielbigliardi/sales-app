@@ -9,6 +9,7 @@ import { SuppliersDeleteComponent } from './suppliers/suppliers-delete/suppliers
 import { SuppliersNewComponent } from './suppliers/suppliers-new/suppliers-new.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { ProductsComponent } from './products/products.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 export const routes: Routes = [
 
@@ -56,4 +57,9 @@ export const routes: Routes = [
             }
         ]
     },
+    {
+        path: "checkout",
+        // component: CheckoutComponent
+        loadComponent: () => CheckoutComponent
+    }
 ];
