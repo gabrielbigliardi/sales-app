@@ -8,11 +8,12 @@ import { MaterialModule } from '../../material.module';
 import { LoadingBarComponent } from '../../loading-bar.component';
 import { CartService } from '../../cart.service';
 import { CartItem } from '../../cart.dto';
+import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
   selector: 'app-products-list',
   standalone: true,
-  imports: [AsyncPipe, MaterialModule, CurrencyPipe, LoadingBarComponent],
+  imports: [AsyncPipe, MaterialModule, CurrencyPipe, LoadingBarComponent, ProductCardComponent],
   templateUrl: './products-list.component.html',
   styles: ``
 })
@@ -48,14 +49,6 @@ export class ProductsListComponent implements OnInit {
     console.log(this.searchForm.value);
   }
 
-  onAddToCart(product: Product) {
-    const cartToAdd: CartItem = {
-      idProduct: product.id,
-      name: product.name,
-      quantity: 1,
-      unitPrice: product.unitPrice
-    }
-    this.cartService.addItem(cartToAdd)
-  }
+
 
 }

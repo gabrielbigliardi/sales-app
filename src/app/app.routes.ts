@@ -15,7 +15,8 @@ export const routes: Routes = [
 
     {
         path: "categories",
-        component: CategoriesComponent
+        // component: CategoriesComponent
+        loadComponent: () => import('./categories/categories.component').then(c => c.CategoriesComponent)
     },
     {
         path: "suppliers",
@@ -59,7 +60,7 @@ export const routes: Routes = [
     },
     {
         path: "checkout",
-        // component: CheckoutComponent
-        loadComponent: () => CheckoutComponent
+        component: CheckoutComponent
+        // loadComponent: () => CheckoutComponent
     }
 ];
